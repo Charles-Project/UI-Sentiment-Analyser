@@ -13,37 +13,37 @@ let check = "true";
 let sentence;
 
 checking.addEventListener("click", e => {
-  form1.classList.remove("hide");
-  form1.classList.add("show");
+  if (check) {
+    form1.classList.remove("hide");
+    form1.classList.add("show");
+    check = false;
+    checking.textContent = "clear";
+    return;
+  }
+
+  if (!check) {
+    texting.value = "";
+    result.classList.remove("show");
+    result.classList.add("hide");
+    return;
+  }
 });
 
 btn1.addEventListener("click", e => {
-  if (check === "true") {
-    btn1.textContent = "Clear Text!";
-    sentence = texting.value;
+  sentence = texting.value;
 
-    sendData(sentence)
-      .then(res => {
-        console.log(res.data.data);
-        // result.classList.remove("hide");
-        // result.classList.add("show");
-        phil.textContent = res.data.data;
-      })
-      .catch(err => {
-        console.error(err);
-      });
-    result.classList.remove("hide");
-    result.classList.add("show");
-    check = "false";
-    return false;
-  }
-  if (check === "false") {
-    result.classList.remove("show");
-    result.classList.add("hide");
-    btn1.textContent = "Analyse Text!";
-    check = "true";
-    texting.value = "";
-  }
+  sendData(sentence)
+    .then(res => {
+      console.log(res.data.data);
+      // result.classList.remove("hide");
+      // result.classList.add("show");
+      phil.textContent = res.data.data;
+    })
+    .catch(err => {
+      console.error(err);
+    });
+  result.classList.remove("hide");
+  result.classList.add("show");
 });
 
 // const sendData = sentence => {

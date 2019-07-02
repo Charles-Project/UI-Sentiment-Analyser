@@ -33,6 +33,7 @@
 
 .container .checking {
   padding: 15px;
+  text-transform: capitalize;
   border-radius: 15%;
   color: white;
   background: #ff8f00;
